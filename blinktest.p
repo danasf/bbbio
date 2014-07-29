@@ -6,8 +6,11 @@
 #define GPIO1 				0x4804c000 // GPIO1 Controller
 #define EMERGENCY_SHUTDOWN	0x00000000 // Address of stop everything command
 #define PIN_OFFSET 			0x00000004 // Offset to start reading PIN data at, 4 bytes in
-#define GPIO_DATAOUT		0x13c	   // Set data, how is this different form SET/CLEAR, set all bits?
-#define GPIO_DATAIN			0x138	   // Clear data
+// this is different from GPIO SET
+#define GPIO_SET_OUT		0x194	   // Set 1s to OUT
+#define GPIO_SET_CLEAR		0x190	   // Set 1s to CLEAR
+#define GPIO_DATAOUT		0x13c	   // SET ALL bits to state specified
+#define GPIO_DATAIN			0x138	   // Read state of Pins?
 #define LOOP_COUNT r1 				   // Loop counter
 
 START:
@@ -19,7 +22,8 @@ START:
 	MOV r0, 0 		  					// put shared ram address into r0
 	LBBO LOOP_COUNT, r0, 0, 4 			// load 4 bytes of memory at address speced in r0 into r1, no offset
 	MOV r4, PIN_OFFSET 					// move starting address of pin data into r4
-	LBBO r5, EMERGENCY_SHUTDOWN, 0, 4	// move data at address into r5
+	MOV r6, EMERGENCY_SHUTDOWN
+	LBBO r5, r6, 0, 4	// move data at emergency shutdown address into r5
 
 SET_PINS:
 	LBBO r2, r4, 0, 4 		// put data at address speced in r4 into r2
