@@ -66,10 +66,10 @@ SET_OFF:
 	MOV r2, 0 		// put state data for IO1 into r2
 	MOV  r3, GPIO1 | GPIO_DATAOUT // put GPIO into r3
 	SBBO r2,r3, 0, 4 		// store byte burst, register -> mem, in this case we're writing GPIO
+	LBBO r7, r0, SH_DUTY_OFFSET, 4	// ok, next up is the delay, move that from address speced in r4 to r0
 	JMP DELAY
 
 DELAY:
-	LBBO r7, r0, SH_DUTY_OFFSET, 4	// ok, next up is the delay, move that from address speced in r4 to r0
 	SUB r7, r7, 1				  // subtract 1 from delay
 	SBNE DELAY, r7, 0 			  // if R0 != 0 go to DELAY
 	SUB LOOP_COUNTER, LOOP_COUNTER, 1 // subtract 1 from loop count
