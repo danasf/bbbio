@@ -22,9 +22,9 @@
 #define SHARED_ESCAPE_OFFSET 0x00000000 // Offset for Escape Value
 #define SHARED_IO0_OFFSET	 0x00000004	// Offset for IO0 Pins
 #define	SHARED_IO1_OFFSET	 0x00000008 // Offset for IO1 Pins
-#define	SHARED_COUNT_OFFSET  0x00000016 // Offset for Counter
-#define	SHARED_DUTY_OFFSET   0x00000020 // Offset for Duty Cycle
-#define	SHARED_PER_OFFSET    0x00000024 // Offset for PWM Period
+#define	SHARED_COUNT_OFFSET  0x00000010 // Offset for Counter
+#define	SHARED_DUTY_OFFSET   0x00000000 // Offset for Duty Cycle
+#define	SHARED_PER_OFFSET    0x00000000 // Offset for PWM Period
 
 #define SH_ESCAPE_OFFSET 0 // Offset for Escape Value
 #define SH_IO0_OFFSET	 4	// Offset for IO0 Pins
