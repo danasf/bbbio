@@ -22,10 +22,7 @@ class IOCtrl(object):
 			self.data = self.data & ~(1 << pin)
 
 	def getData(self):
-		print bin(self.data)
 		return self.data
-
-
 
 # first 4 bytes = control code
 # next 4 bytes GPIO0
@@ -54,19 +51,11 @@ pypruss.init()
 pypruss.open(0)
 pypruss.pruintc_init()
 
-pypruss.pru_write_memory(0,0,escape)
-pypruss.pru_write_memory(0,4,cycle_count)
-pypruss.pru_write_memory(0,8,pwm_ratio)
-pypruss.pru_write_memory(0,12,gpio)
+data = [escape, cycle_count, pwm_ratio, gpio]
+pypruss.pru_write_memory(0,0,data)
 
 print "running program!"
-
 pypruss.exec_program(0,"./memtest.bin")
-for x in xrange(1,10):
-	if x % 2:
-		
-	time.sleep(2)
+
 pypruss.clear_event(0)
 pypruss.exit()
-
-#pru_write_memory(0,4,gpio0)
