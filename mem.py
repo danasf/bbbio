@@ -9,7 +9,7 @@ GPIO_CLEARDATAOUT = 0x190
 USR = 7<<22 # turn on 3 USR Pins
 
 with open("/dev/mem","r+b") as f:
-	mem = mmap(f.fileno(), GPIO_size,offset=GPIO1_start)
+	mem = mmap(f.fileno(), GPIO_size,offset=GPIO1_base)
 
 # load register at output enable
 packed_reg = mem[GPIO_OE:GPIO_OE+4]

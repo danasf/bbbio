@@ -1,3 +1,17 @@
+BeagleBone Black Experiments
+========
+
+Assorted Experiments with low level GPIO access on BBB
+
+Writing to GPIOs via /dev/mem
+
+* memory.c
+* mem.py
+* bbiolib_led.c (uses BBBIO lib)
+
+Write to GPIOs via PRU
+
+Use [pypruss](https://bitbucket.org/intelligentagent/pypruss/) to load firmware on PRU
 
 Useful BBB Memory Locations
 
